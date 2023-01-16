@@ -116,13 +116,19 @@
   padding: 0.75rem 1.25rem;
   margin-top: 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+
   text-align: center;
 }
 .icon_alert {
   color: red;
   margin-right: 20px;
+  align-self: center;
+}
+.icon_alert_close {
+  color: red;
+  position: absolute;
+  right: 20px;
 }
 .search_container {
   display: flex;
@@ -193,5 +199,6 @@ h1 {
   }
   .icon_alert {
     font-size: 15px;
+    margin-right: 0;
   }
 }

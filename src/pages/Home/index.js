@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from './styles.module.css'
 import { FiMapPin } from 'react-icons/fi'
 import { GoAlert } from 'react-icons/go'
+import { AiOutlineClose } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import { InfinitySpin } from 'react-loader-spinner'
 
@@ -10,6 +11,7 @@ import axios from 'axios'
 const Index = () => {
   const [selectedProvince, setSelectedProvince] = useState('')
   const [isLoading, setLoading] = useState(false)
+  const [alert, SetAlert] = useState(true)
   const [esorts, setEsorts] = useState([])
 
   const navigate = useNavigate()
@@ -30,6 +32,9 @@ const Index = () => {
     setLoading(false)
     console.log(res.data)
     setEsorts(res.data.items)
+  }
+  function click() {
+    SetAlert(false)
   }
 
   if (isLoading)
@@ -61,12 +66,15 @@ const Index = () => {
         </select>
         <button className={style.search_button}>Buscar</button>
       </div>
-      <div className={style.info_alert}>
-        <GoAlert className={style.icon_alert} />
-        Moz Esorts não é responsável por produtos ou serviços
-        oferecidos nos anúncios e não se responsabiliza por ações do
-        usuário.
-      </div>
+      {alert == true && (
+        <div onClick={() => click()} className={style.info_alert}>
+          <AiOutlineClose className={style.icon_alert_close} />
+          <GoAlert className={style.icon_alert} />
+          Moz Esorts não é responsável por produtos ou serviços
+          oferecidos nos anúncios e não se responsabiliza por ações do
+          usuário.
+        </div>
+      )}
       <div className={style.welcome}>
         <h1>Acompanhantes</h1>
         <p>
