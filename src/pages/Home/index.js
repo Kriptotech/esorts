@@ -51,7 +51,7 @@ const Index = () => {
 
   return (
     <div className={style.container}>
-      {localStorage.getItem('+18') == true && (
+      {!localStorage.getItem('+18') && (
         <div className={style.modal}>
           <motion.div
             initial={{ y: -100, opacity: 0 }}
