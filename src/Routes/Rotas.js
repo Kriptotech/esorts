@@ -11,7 +11,7 @@ const Rotas = () => {
       <Header />
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/detail:id" exact element={<Detail />} />
+        <Route path="/detail/:id" exact element={<Detail />} />
       </Routes>
       <BottomTab />
     </BrowserRouter>
