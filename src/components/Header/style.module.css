@@ -23,10 +23,16 @@ nav a {
   display: flex;
   gap: 20px;
 }
+.list a {
+  transition-delay: 0.2s;
+}
 .list_item {
   display: flex;
   align-items: center;
   color: #0c2e53;
+}
+.list a:hover {
+  color: red;
 }
 .icons {
   margin-right: 8px;

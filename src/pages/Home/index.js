@@ -5,12 +5,14 @@ import { GoAlert } from 'react-icons/go'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
 import { InfinitySpin } from 'react-loader-spinner'
-
+import { motion } from 'framer-motion'
 import axios from 'axios'
+import { Alert } from 'bootstrap'
 
 const Index = () => {
   const [selectedProvince, setSelectedProvince] = useState('')
   const [isLoading, setLoading] = useState(false)
+  const [modal, setModal] = useState(true)
   const [alert, SetAlert] = useState(true)
   const [esorts, setEsorts] = useState([])
 
@@ -36,6 +38,9 @@ const Index = () => {
   function click() {
     SetAlert(false)
   }
+  async function closewindow() {
+    alert('Não podemos deixar você passar, continuação do ótimo dia.')
+  }
 
   if (isLoading)
     return (
@@ -46,6 +51,42 @@ const Index = () => {
 
   return (
     <div className={style.container}>
+      {modal && (
+        <div className={style.modal}>
+          <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={
+              modal ? { y: 0, opacity: 1 } : { y: -80, opacity: 0 }
+            }
+            transition={{ duration: 1 }}
+            className={style.content_modal}
+          >
+            <div className={style.moda_content}>
+              <GoAlert className={style.modal_alert_icon} />
+              <h1>Alerta </h1>
+              <p>
+                A Moz Escorts eh um site de acompanhantes , alguns
+                conteúdos como fotos, videos sao implícitos para
+                certas idades , por essa razão fazemos discriminacao
+                de idades no site, quantos anos você tem ?
+              </p>
+
+              <button className={style.menor}>
+                {' '}
+                Sou menor de 18
+              </button>
+              <button
+                onClick={() => {
+                  setModal(false)
+                }}
+                className={style.maior}
+              >
+                Sou maior de +18
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
       <div className={style.search_container}>
         <select
           className={style.province}
@@ -66,7 +107,7 @@ const Index = () => {
         </select>
         <button className={style.search_button}>Buscar</button>
       </div>
-      {alert == true && (
+      {alert && (
         <div onClick={() => click()} className={style.info_alert}>
           <AiOutlineClose className={style.icon_alert_close} />
           <GoAlert className={style.icon_alert} />

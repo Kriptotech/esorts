@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom'
 import style from './styles.module.css'
 import { useParams } from 'react-router-dom'
 import { InfinitySpin } from 'react-loader-spinner'
-
+import { AiFillPhone } from 'react-icons/ai'
+import { motion } from 'framer-motion'
 import axios from 'axios'
 const restrition = [
   {
@@ -32,6 +33,7 @@ const Index = () => {
   const [text, setText] = useState()
   const [readMore, setReadMore] = useState(false)
   const [isLoading, setLoading] = useState(false)
+  const [modal, setModal] = useState(false)
   const [selectedImage, setSelectedImage] = useState('')
   const [images, setImages] = useState([])
   const [detail, setDetail] = useState([])
@@ -58,8 +60,32 @@ const Index = () => {
         <InfinitySpin width="200" color="red" />
       </div>
     )
+
   return (
     <div>
+      {modal && (
+        <div className={style.modal}>
+          <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={
+              modal ? { y: 0, opacity: 1 } : { y: -80, opacity: 0 }
+            }
+            transition={{ duration: 1 }}
+            className={style.content_modal}
+          >
+            <div className={style.close_modal_container}>
+              <div
+                onClick={() => setModal(false)}
+                className={style.close_modal}
+              >
+                X
+              </div>
+            </div>
+
+            <div className={style.content}></div>
+          </motion.div>
+        </div>
+      )}
       {detail.length != 0 && (
         <>
           {detail.map(item => (
@@ -105,9 +131,8 @@ const Index = () => {
                     <span>Altura: </span>
                     {item.height} M
                   </span>
-                  <div className={style.contact_container}>
-                    <button>Solicitar acompanhante</button>
-                  </div>
+
+                  <h1>Sobre</h1>
                   <span className={style.bio}>
                     {!readMore ? (
                       <p>{text} ...</p>
@@ -130,7 +155,18 @@ const Index = () => {
                       </p>
                     )}
                   </span>
-
+                  <div className={style.contact_container}>
+                    {item.owner ? (
+                      <button onClick={() => setModal(true)}>
+                        Solicitar acompanhante
+                      </button>
+                    ) : (
+                      <button>
+                        Contactar{' '}
+                        <AiFillPhone style={{ marginLeft: 20 }} />
+                      </button>
+                    )}
+                  </div>
                   <h1>Restrições:</h1>
                   <div className={style.restrition_container}>
                     {restrition.map(item => (
