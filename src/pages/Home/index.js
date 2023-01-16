@@ -51,7 +51,7 @@ const Index = () => {
 
   return (
     <div className={style.container}>
-      {modal && (
+      {localStorage.getItem('+18') == true && (
         <div className={style.modal}>
           <motion.div
             initial={{ y: -100, opacity: 0 }}
@@ -77,7 +77,7 @@ const Index = () => {
               </button>
               <button
                 onClick={() => {
-                  setModal(false)
+                  setModal(false) && localStorage.setItem('+18', true)
                 }}
                 className={style.maior}
               >
