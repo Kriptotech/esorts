@@ -85,7 +85,7 @@ const Index = () => {
       <div className={style.wrapper}>
         {esorts.map(item => (
           <Link
-            to={`/detail/perfil/esort/${item.id}`}
+            to={`/detail/${item.id}`}
             key={item.id}
             className={style.image_area}
           >
