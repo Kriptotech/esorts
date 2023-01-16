@@ -41,6 +41,10 @@ const Index = () => {
   async function closewindow() {
     alert('Não podemos deixar você passar, continuação do ótimo dia.')
   }
+  async function closeModal() {
+    setModal(false)
+    localStorage.setItem('+18', true)
+  }
 
   if (isLoading)
     return (
@@ -75,12 +79,7 @@ const Index = () => {
                 {' '}
                 Sou menor de 18
               </button>
-              <button
-                onClick={() => {
-                  setModal(false) && localStorage.setItem('+18', true)
-                }}
-                className={style.maior}
-              >
+              <button onClick={closeModal} className={style.maior}>
                 Sou maior de +18
               </button>
             </div>
