@@ -50,6 +50,7 @@ const Index = () => {
     return (
       <div className={style.isLoading}>
         <InfinitySpin width="200" color="red" />
+        <span>powered by Global Digital</span>
       </div>
     )
 
