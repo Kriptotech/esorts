@@ -27,7 +27,9 @@ const Header = () => {
   return (
     <nav className={style.nav}>
       <div className={style.nav_wrapper}>
-        <h1 className={style.logo}>MOZ ESCORTS</h1>
+        <Link to="/">
+          <h1 className={style.logo}>MOZ ESCORTS</h1>
+        </Link>
         <ul className={style.list}>
           <li className={style.list_item}>
             <FiPlusCircle className={style.icons} />
