@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import { ThreeDots } from 'react-loader-spinner'
+import Zoom from 'react-reveal/Zoom'
 
 const Index = () => {
   const [name, setName] = useState('')
@@ -70,71 +71,73 @@ const Index = () => {
         <div className={style.left_content}>
           <h1>Bem vindo(a) de volta</h1>
           <p>Por favor preencha seus dados</p>
+          <Zoom clear>
+            <form>
+              <h4>Nome</h4>
+              <input
+                required
+                type={'text'}
+                placeholder="Digite seu nome"
+                onChange={e => setName(e.target.value)}
+              />
+              <h4>Celular</h4>
+              <input
+                maxLength={9}
+                required
+                type={'tel'}
+                placeholder="+258"
+                onChange={e => setCell(e.target.value)}
+              />
+              <h4>Email</h4>
+              <input
+                required
+                type={'email'}
+                placeholder="Digite seu email"
+                onChange={e => setEmail(e.target.value)}
+              />
 
-          <form>
-            <h4>Nome</h4>
-            <input
-              required
-              type={'text'}
-              placeholder="Digite seu nome"
-              onChange={e => setName(e.target.value)}
-            />
-            <h4>Celular</h4>
-            <input
-              maxLength={9}
-              required
-              type={'tel'}
-              placeholder="+258"
-              onChange={e => setCell(e.target.value)}
-            />
-            <h4>Email</h4>
-            <input
-              required
-              type={'email'}
-              placeholder="Digite seu email"
-              onChange={e => setEmail(e.target.value)}
-            />
+              <h4>Password</h4>
+              <input
+                required
+                type={'password'}
+                placeholder="Digite seu password"
+                onChange={e => setPassword(e.target.value)}
+              />
+              <h4>Confirmar Password</h4>
+              <input
+                required
+                type={'password'}
+                placeholder="Digite seu password"
+                onChange={e => setconfirmapassword(e.target.value)}
+              />
 
-            <h4>Password</h4>
-            <input
-              required
-              type={'password'}
-              placeholder="Digite seu password"
-              onChange={e => setPassword(e.target.value)}
-            />
-            <h4>Confirmar Password</h4>
-            <input
-              required
-              type={'password'}
-              placeholder="Digite seu password"
-              onChange={e => setconfirmapassword(e.target.value)}
-            />
-
-            <div className={style.form_submit}>
-              <button
-                disabled={isLoading}
-                onClick={e => createAccount(e)}
-              >
-                {isLoading ? (
-                  <ThreeDots
-                    height="10"
-                    width="50"
-                    radius="9"
-                    color="white"
-                    ariaLabel="three-dots-loading"
-                    wrapperStyle={{}}
-                    wrapperClassName=""
-                    visible={true}
-                  />
-                ) : (
-                  'Criar conta'
-                )}
-              </button>
-              <span className={style.no_have_account}>
-                Já tem conta ? <Link to="/Login">iniciar sessão</Link>
-              </span>
-            </div>
-          </form>
+              <div className={style.form_submit}>
+                <button
+                  disabled={isLoading}
+                  onClick={e => createAccount(e)}
+                >
+                  {isLoading ? (
+                    <ThreeDots
+                      height="10"
+                      width="50"
+                      radius="9"
+                      color="white"
+                      ariaLabel="three-dots-loading"
+                      wrapperStyle={{}}
+                      wrapperClassName=""
+                      visible={true}
+                    />
+                  ) : (
+                    'Criar conta'
+                  )}
+                </button>
+                <span className={style.no_have_account}>
+                  Já tem conta ?{' '}
+                  <Link to="/Login">iniciar sessão</Link>
+                </span>
+              </div>
+            </form>
+          </Zoom>
         </div>
       </div>
       <div className={style.right_container}>

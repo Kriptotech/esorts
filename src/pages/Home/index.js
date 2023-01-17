@@ -9,6 +9,8 @@ import { motion } from 'framer-motion'
 import axios from 'axios'
 import Header from '../../components/Header'
 import BottomTab from '../../components/BottomTab'
+import Slide from 'react-reveal/Slide'
+import Fade from 'react-reveal/Fade'
 
 const Index = () => {
   const [selectedProvince, setSelectedProvince] = useState('')
@@ -111,13 +113,15 @@ const Index = () => {
         <button className={style.search_button}>Buscar</button>
       </div>
       {alert && (
-        <div onClick={() => click()} className={style.info_alert}>
-          <AiOutlineClose className={style.icon_alert_close} />
-          <GoAlert className={style.icon_alert} />
-          Moz Esorts não é responsável por produtos ou serviços
-          oferecidos nos anúncios e não se responsabiliza por ações do
-          usuário.
-        </div>
+        <Fade top>
+          <div onClick={() => click()} className={style.info_alert}>
+            <AiOutlineClose className={style.icon_alert_close} />
+            <GoAlert className={style.icon_alert} />
+            Moz Esorts não é responsável por produtos ou serviços
+            oferecidos nos anúncios e não se responsabiliza por ações
+            do usuário.
+          </div>
+        </Fade>
       )}
       <div className={style.welcome}>
         <h1>Acompanhantes</h1>
@@ -134,44 +138,47 @@ const Index = () => {
         </p>
       </div>
 
-      <div className={style.wrapper}>
-        {esorts.map(item => (
-          <Link
-            to={`/detail/${item.id}`}
-            key={item.id}
-            className={style.image_area}
-          >
-            <div className={style.image}>
-              <img
-                src={
-                  process.env.REACT_APP_ENDPOINT + item.image_backdrop
-                }
-                alt="image-de-perfil"
-              />
-            </div>
+      <Slide top cascade>
+        <div className={style.wrapper}>
+          {esorts.map(item => (
+            <Link
+              to={`/detail/${item.id}`}
+              key={item.id}
+              className={style.image_area}
+            >
+              <div className={style.image}>
+                <img
+                  src={
+                    process.env.REACT_APP_ENDPOINT +
+                    item.image_backdrop
+                  }
+                  alt="image-de-perfil"
+                />
+              </div>
 
-            {/* <button className={style.hearthbutton_outline}>
+              {/* <button className={style.hearthbutton_outline}>
                 <AiOutlineHeart />
               </button> */}
-            {item.verified && (
-              <button className={style.verificado}>
-                Verificado(a)
-              </button>
-            )}
-            <div className={style.info_container}>
-              <span className={style.name}>{item.name}</span>
-              <span className={style.bio}>
-                {item.description.length > 80
-                  ? item.description.substring(0, 80) + '...'
-                  : item.description}
-              </span>
-              <span className={style.local}>
-                <FiMapPin /> {item.province}
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
+              {item.verified && (
+                <button className={style.verificado}>
+                  Verificado(a)
+                </button>
+              )}
+              <div className={style.info_container}>
+                <span className={style.name}>{item.name}</span>
+                <span className={style.bio}>
+                  {item.description.length > 80
+                    ? item.description.substring(0, 80) + '...'
+                    : item.description}
+                </span>
+                <span className={style.local}>
+                  <FiMapPin /> {item.province}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </Slide>
       <BottomTab />
     </div>
   )

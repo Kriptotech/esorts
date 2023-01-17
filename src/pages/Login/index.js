@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import axios from 'axios'
 import { ThreeDots } from 'react-loader-spinner'
+import Fade from 'react-reveal/Fade'
+import Zoom from 'react-reveal/Zoom'
 
 const Index = () => {
   const [email, setEmail] = useState('')
@@ -51,38 +53,46 @@ const Index = () => {
 
           <form>
             <h4>Email</h4>
-            <input
-              required
-              type={'email'}
-              placeholder="Digite seu email"
-              onChange={e => setEmail(e.target.value)}
-            />
+            <Fade left>
+              <input
+                required
+                type={'email'}
+                placeholder="Digite seu email"
+                onChange={e => setEmail(e.target.value)}
+              />
+            </Fade>
+
             <h4>Password</h4>
-            <input
-              required
-              type={'password'}
-              placeholder="Digite seu password"
-              onChange={e => setPassword(e.target.value)}
-            />
+            <Fade left>
+              <input
+                required
+                type={'password'}
+                placeholder="Digite seu password"
+                onChange={e => setPassword(e.target.value)}
+              />
+            </Fade>
 
             <div className={style.form_submit}>
               <p>Esqueci a palavra-passe</p>
-              <button disabled={isLoading} onClick={e => login(e)}>
-                {isLoading ? (
-                  <ThreeDots
-                    height="10"
-                    width="50"
-                    radius="9"
-                    color="white"
-                    ariaLabel="three-dots-loading"
-                    wrapperStyle={{}}
-                    wrapperClassName=""
-                    visible={true}
-                  />
-                ) : (
-                  'Iniciar sessão'
-                )}
-              </button>
+              <Zoom clear>
+                <button disabled={isLoading} onClick={e => login(e)}>
+                  {isLoading ? (
+                    <ThreeDots
+                      height="10"
+                      width="50"
+                      radius="9"
+                      color="white"
+                      ariaLabel="three-dots-loading"
+                      wrapperStyle={{}}
+                      wrapperClassName=""
+                      visible={true}
+                    />
+                  ) : (
+                    'Iniciar sessão'
+                  )}
+                </button>
+              </Zoom>
+
               <span className={style.no_have_account}>
                 Nao tem conta ?{' '}
                 <Link to={'/Signup'}>Criar conta</Link>
