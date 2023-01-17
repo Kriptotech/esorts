@@ -4,6 +4,7 @@ import style from './styles.module.css'
 import { useParams } from 'react-router-dom'
 import { InfinitySpin } from 'react-loader-spinner'
 import { AiFillPhone } from 'react-icons/ai'
+import { MdVerified } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import axios from 'axios'
 
@@ -96,6 +97,9 @@ const Index = () => {
             <div key={item.id} className={style.wrapper}>
               <div className={style.left_container}>
                 <div className={style.profile_container}>
+                  {item.owner && (
+                    <MdVerified className={style.verfied_icon} />
+                  )}
                   <img
                     alt="esort-image"
                     src={

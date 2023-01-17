@@ -60,6 +60,12 @@
   display: flex;
   flex-direction: column;
 }
+.verfied_icon {
+  font-size: 24px;
+  position: absolute;
+  right: 40px;
+  color: green;
+}
 .contact_container {
   display: flex;
   height: 70px;
