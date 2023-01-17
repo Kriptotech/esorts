@@ -5,6 +5,8 @@ import { IoLogInOutline } from 'react-icons/io5'
 import { FaBars } from 'react-icons/fa'
 import { AiOutlineClose } from 'react-icons/ai'
 import { MdPersonAddAlt1 } from 'react-icons/md'
+import { IoPersonCircle } from 'react-icons/io5'
+import { IoLogOut } from 'react-icons/io5'
 import { motion } from 'framer-motion'
 import style from './style.module.css'
 
@@ -13,6 +15,13 @@ const Header = () => {
 
   const toogleClick = () => {
     setOn(!on)
+  }
+  const logout = () => {
+    localStorage.removeItem('token')
+    localStorage.removeItem('name')
+    localStorage.removeItem('email')
+    localStorage.removeItem('cell')
+    window.location.reload()
   }
 
   return (
@@ -24,14 +33,34 @@ const Header = () => {
             <FiPlusCircle className={style.icons} />
             <Link>Quero ser acompanhante</Link>
           </li>
-          <li className={style.list_item}>
-            <IoLogInOutline className={style.icons} />
-            <Link>Entrar</Link>
-          </li>
-          <li className={style.list_item}>
-            <MdPersonAddAlt1 className={style.icons} />
-            <Link>Registrar</Link>
-          </li>
+          {localStorage.getItem('token') ? (
+            <li className={style.list_item}>
+              <IoPersonCircle className={style.icons} />
+              <Link to="/Profile">
+                {' '}
+                {localStorage.getItem('name').length > 25
+                  ? localStorage.getItem('name').substring(0, 25) +
+                    '...'
+                  : localStorage.getItem('name')}
+              </Link>
+            </li>
+          ) : (
+            <li className={style.list_item}>
+              <IoLogInOutline className={style.icons} />
+              <Link to="/Login">Entrar</Link>
+            </li>
+          )}
+          {localStorage.getItem('token') ? (
+            <li onClick={logout} className={style.list_item}>
+              <IoLogOut className={style.icons} />
+              <Link>Sair</Link>
+            </li>
+          ) : (
+            <li className={style.list_item}>
+              <MdPersonAddAlt1 className={style.icons} />
+              <Link>Registrar</Link>
+            </li>
+          )}
         </ul>
         <div onClick={toogleClick} className={style.mobile}>
           {on ? (
@@ -54,14 +83,33 @@ const Header = () => {
               <FiPlusCircle className={style.icons} />
               <Link>Quero ser acompanhante</Link>
             </li>
-            <li className={style.list_item}>
-              <IoLogInOutline className={style.icons} />
-              <Link>Entrar</Link>
-            </li>
-            <li className={style.list_item}>
-              <MdPersonAddAlt1 className={style.icons} />
-              <Link>Registrar</Link>
-            </li>
+            {localStorage.getItem('token') ? (
+              <li className={style.list_item}>
+                <IoPersonCircle className={style.icons} />
+                <Link to="/Profile">
+                  {localStorage.getItem('name').length > 25
+                    ? localStorage.getItem('name').substring(0, 25) +
+                      '...'
+                    : localStorage.getItem('name')}
+                </Link>
+              </li>
+            ) : (
+              <li className={style.list_item}>
+                <IoLogInOutline className={style.icons} />
+                <Link to="/Login">Entrar</Link>
+              </li>
+            )}
+            {localStorage.getItem('token') ? (
+              <li onClick={logout} className={style.list_item}>
+                <IoLogOut className={style.icons} />
+                <Link>Sair</Link>
+              </li>
+            ) : (
+              <li className={style.list_item}>
+                <MdPersonAddAlt1 className={style.icons} />
+                <Link>Registrar</Link>
+              </li>
+            )}
           </motion.ul>
         )}
         {/* <motion.div

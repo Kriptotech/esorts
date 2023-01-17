@@ -7,6 +7,8 @@ import { AiFillPhone } from 'react-icons/ai'
 import { MdVerified } from 'react-icons/md'
 import { motion } from 'framer-motion'
 import axios from 'axios'
+import Header from '../../components/Header'
+import BottomTab from '../../components/BottomTab'
 
 const Index = () => {
   const { id } = useParams()
@@ -55,6 +57,8 @@ const Index = () => {
 
   return (
     <div>
+      <Header />
+
       {modal && (
         <div className={style.modal}>
           <motion.div
@@ -185,6 +189,7 @@ const Index = () => {
           ))}
         </>
       )}
+      <BottomTab />
     </div>
   )
 }

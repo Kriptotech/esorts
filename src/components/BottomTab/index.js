@@ -45,7 +45,7 @@ const route = [
         }
       />
     ),
-    route: '/'
+    route: localStorage.getItem('token') ? '/Profile' : '/Login'
   },
   {
     name: 'Definições',
@@ -58,7 +58,7 @@ const route = [
         }
       />
     ),
-    route: '/'
+    route: localStorage.getItem('token') ? '/Profile' : '/Login'
   }
 ]
 

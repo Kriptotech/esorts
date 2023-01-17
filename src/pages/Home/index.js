@@ -7,7 +7,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { InfinitySpin } from 'react-loader-spinner'
 import { motion } from 'framer-motion'
 import axios from 'axios'
-import { Alert } from 'bootstrap'
+import Header from '../../components/Header'
+import BottomTab from '../../components/BottomTab'
 
 const Index = () => {
   const [selectedProvince, setSelectedProvince] = useState('')
@@ -56,6 +57,8 @@ const Index = () => {
 
   return (
     <div className={style.container}>
+      <Header />
+
       {!localStorage.getItem('+18') && (
         <div className={style.modal}>
           <motion.div
@@ -169,6 +172,7 @@ const Index = () => {
           </Link>
         ))}
       </div>
+      <BottomTab />
     </div>
   )
 }
