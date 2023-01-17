@@ -9,6 +9,7 @@ import { motion } from 'framer-motion'
 import axios from 'axios'
 import Header from '../../components/Header'
 import BottomTab from '../../components/BottomTab'
+import Fade from 'react-reveal/Fade'
 
 const Index = () => {
   const { id } = useParams()
@@ -114,20 +115,24 @@ const Index = () => {
                   />
                   <div className={style.thumb}>
                     {images.map(item => (
-                      <img
-                        onClick={() => setSelectedImage(item)}
-                        key={item.id}
-                        alt="thumb-images"
-                        style={{
-                          border:
-                            selectedImage.image == item.image
-                              ? '1px solid red'
-                              : 'none'
-                        }}
-                        src={
-                          process.env.REACT_APP_ENDPOINT + item.image
-                        }
-                      />
+                      <Fade left cascade>
+                        {' '}
+                        <img
+                          onClick={() => setSelectedImage(item)}
+                          key={item.id}
+                          alt="thumb-images"
+                          style={{
+                            border:
+                              selectedImage.image == item.image
+                                ? '1px solid red'
+                                : 'none'
+                          }}
+                          src={
+                            process.env.REACT_APP_ENDPOINT +
+                            item.image
+                          }
+                        />
+                      </Fade>
                     ))}
                   </div>
                 </div>
@@ -168,21 +173,23 @@ const Index = () => {
                       </p>
                     )}
                   </span>
-                  <div className={style.contact_container}>
-                    {item.owner ? (
-                      <button onClick={() => setModal(true)}>
-                        Solicitar acompanhante
-                      </button>
-                    ) : (
-                      <a
-                        className={style.tel}
-                        href={`tel:${item.number}`}
-                      >
-                        Contactar{' '}
-                        <AiFillPhone style={{ marginLeft: 20 }} />
-                      </a>
-                    )}
-                  </div>
+                  <Fade top cascade>
+                    <div className={style.contact_container}>
+                      {item.owner ? (
+                        <button onClick={() => setModal(true)}>
+                          Solicitar acompanhante
+                        </button>
+                      ) : (
+                        <a
+                          className={style.tel}
+                          href={`tel:${item.number}`}
+                        >
+                          Contactar{' '}
+                          <AiFillPhone style={{ marginLeft: 20 }} />
+                        </a>
+                      )}
+                    </div>
+                  </Fade>
                 </div>
               </div>
             </div>

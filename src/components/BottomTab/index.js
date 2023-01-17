@@ -5,6 +5,7 @@ import { FiSettings } from 'react-icons/fi'
 import { MdOutlinePersonOutline } from 'react-icons/md'
 import { BiSearch } from 'react-icons/bi'
 import { Link } from 'react-router-dom'
+import Slide from 'react-reveal/Slide'
 
 const route = [
   {
@@ -77,7 +78,7 @@ const index = () => {
               localStorage.setItem('mobile-route', item.name)
             }
           >
-            {item.icon}
+            <Slide bottom>{item.icon}</Slide>
             <span
               style={{
                 color:

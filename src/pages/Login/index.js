@@ -46,8 +46,8 @@ const Index = () => {
   return (
     <div className={style.container}>
       <div className={style.left_container}>
-        <h1>Moz Escorts</h1>
         <div className={style.left_content}>
+          <h1>Moz Escorts</h1>
           <h1>Bem vindo(a) de volta</h1>
           <p>Por favor digite suas credencias</p>
 
