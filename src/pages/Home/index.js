@@ -138,47 +138,45 @@ const Index = () => {
         </p>
       </div>
 
-      <Slide top cascade>
-        <div className={style.wrapper}>
-          {esorts.map(item => (
-            <Link
-              to={`/detail/${item.id}`}
-              key={item.id}
-              className={style.image_area}
-            >
-              <div className={style.image}>
-                <img
-                  src={
-                    process.env.REACT_APP_ENDPOINT +
-                    item.image_backdrop
-                  }
-                  alt="image-de-perfil"
-                />
-              </div>
+      <div className={style.wrapper}>
+        {esorts.map(item => (
+          <Link
+            to={`/detail/${item.id}`}
+            key={item.id}
+            className={style.image_area}
+          >
+            <div className={style.image}>
+              <img
+                src={
+                  process.env.REACT_APP_ENDPOINT + item.image_backdrop
+                }
+                alt="image-de-perfil"
+              />
+            </div>
 
-              {/* <button className={style.hearthbutton_outline}>
+            {/* <button className={style.hearthbutton_outline}>
                 <AiOutlineHeart />
               </button> */}
-              {item.verified && (
-                <button className={style.verificado}>
-                  Verificado(a)
-                </button>
-              )}
-              <div className={style.info_container}>
-                <span className={style.name}>{item.name}</span>
-                <span className={style.bio}>
-                  {item.description.length > 80
-                    ? item.description.substring(0, 80) + '...'
-                    : item.description}
-                </span>
-                <span className={style.local}>
-                  <FiMapPin /> {item.province}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </Slide>
+            {item.verified && (
+              <button className={style.verificado}>
+                Verificado(a)
+              </button>
+            )}
+            <div className={style.info_container}>
+              <span className={style.name}>{item.name}</span>
+              <span className={style.bio}>
+                {item.description.length > 80
+                  ? item.description.substring(0, 80) + '...'
+                  : item.description}
+              </span>
+              <span className={style.local}>
+                <FiMapPin /> {item.province}
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
+
       <BottomTab />
     </div>
   )
