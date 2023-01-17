@@ -13,10 +13,10 @@ const Rotas = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/detail/:id" exact element={<Detail />} />
-        <Route path="/Login" exact element={<Login />} />
-        <Route path="/Signup" exact element={<Signup />} />
-        <Route path="/Profile" exact element={<Profile />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="/Profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   )
