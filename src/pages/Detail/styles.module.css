@@ -1,5 +1,6 @@
 .wrapper {
   padding-top: 80px;
+
   width: 90%;
   margin: 0 auto;
   height: 100vh;
@@ -69,6 +70,21 @@
 }
 
 .contact_container button {
+  padding: 20px;
+  border: none;
+  margin-top: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 500;
+  width: 90%;
+  background: green;
+  align-self: center;
+  cursor: pointer;
+}
+.contact_container .tel {
   padding: 20px;
   border: none;
   margin-top: 10px;
@@ -172,17 +188,33 @@
   background: red;
   margin-top: 10px;
   color: white;
+  position: fixed;
 }
 .close_modal_container {
   height: 100px;
   width: 100%;
   display: flex;
+
   justify-content: flex-end;
 }
-
+.content {
+  width: 100%;
+}
+.price_container {
+  width: 100%;
+  padding: 10px;
+}
+.price_container button {
+  border: none;
+  padding: 15px;
+  color: white;
+  background: green;
+  font-weight: 700;
+}
 @media only screen and (max-width: 1024px) {
   .wrapper {
     flex-direction: column;
+    padding-bottom: 280px;
   }
   .left_container {
     width: 100%;
@@ -211,9 +243,5 @@
   }
   .content_modal {
     width: 80%;
-  }
-  .close_modal {
-    top: 75px;
-    right: 60px;
   }
 }

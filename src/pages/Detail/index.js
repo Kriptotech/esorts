@@ -6,26 +6,6 @@ import { InfinitySpin } from 'react-loader-spinner'
 import { AiFillPhone } from 'react-icons/ai'
 import { motion } from 'framer-motion'
 import axios from 'axios'
-const restrition = [
-  {
-    id: 1,
-    name: 'Sexo anal',
-    image: require('./images/anal.png'),
-    is: 'Permitido'
-  },
-  {
-    id: 2,
-    name: 'Sexo oral',
-    image: require('./images/oral.png'),
-    is: 'Permitido'
-  },
-  {
-    id: 3,
-    name: 'Sem proteção',
-    image: require('./images/protetion.png'),
-    is: 'Não permitido'
-  }
-]
 
 const Index = () => {
   const { id } = useParams()
@@ -37,10 +17,12 @@ const Index = () => {
   const [selectedImage, setSelectedImage] = useState('')
   const [images, setImages] = useState([])
   const [detail, setDetail] = useState([])
+  const [prices, setPrices] = useState([])
 
   useEffect(() => {
     localStorage.setItem('mobile-route', 'detail')
     getDetails()
+    getPrices()
   }, [])
   async function getDetails() {
     setLoading(true)
@@ -51,6 +33,14 @@ const Index = () => {
     setImages(res.data.images)
     setSelectedImage(res.data.images[0])
     setText(res.data.desc.slice(0, 200))
+    setLoading(false)
+  }
+  async function getPrices() {
+    setLoading(true)
+    let res = await axios.get(
+      `${process.env.REACT_APP_ENDPOINT}get_package.php?id=${id}`
+    )
+    setPrices(res.data)
     setLoading(false)
   }
 
@@ -82,7 +72,21 @@ const Index = () => {
               </div>
             </div>
 
-            <div className={style.content}></div>
+            <div className={style.content}>
+              {prices.map(item => (
+                <div className={style.price_container} key={item.id}>
+                  <h1>
+                    {item.name} - {item.price} MT
+                  </h1>
+                  {item.items.map(item => (
+                    <ul>
+                      <li>{item.service}</li>
+                    </ul>
+                  ))}
+                  <button>Pagar plano {item.name}</button>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       )}
@@ -161,33 +165,14 @@ const Index = () => {
                         Solicitar acompanhante
                       </button>
                     ) : (
-                      <button>
+                      <a
+                        className={style.tel}
+                        href={`tel:${item.number}`}
+                      >
                         Contactar{' '}
                         <AiFillPhone style={{ marginLeft: 20 }} />
-                      </button>
+                      </a>
                     )}
-                  </div>
-                  <h1>Restrições:</h1>
-                  <div className={style.restrition_container}>
-                    {restrition.map(item => (
-                      <div
-                        className={style.container_icon}
-                        key={item.id}
-                      >
-                        <img src={item.image} />
-                        <span style={{ fontWeight: 500 }}>
-                          {item.name}
-                        </span>
-                        <span
-                          style={{
-                            color:
-                              item.is == 'Permitido' ? 'green' : 'red'
-                          }}
-                        >
-                          {item.is}
-                        </span>
-                      </div>
-                    ))}
                   </div>
                 </div>
               </div>
