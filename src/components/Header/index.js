@@ -58,7 +58,7 @@ const Header = () => {
           ) : (
             <li className={style.list_item}>
               <MdPersonAddAlt1 className={style.icons} />
-              <Link>Registrar</Link>
+              <Link to={'/Signup'}>Registrar</Link>
             </li>
           )}
         </ul>
@@ -107,7 +107,7 @@ const Header = () => {
             ) : (
               <li className={style.list_item}>
                 <MdPersonAddAlt1 className={style.icons} />
-                <Link>Registrar</Link>
+                <Link to={'/Signup'}>Registrar</Link>
               </li>
             )}
           </motion.ul>
